@@ -1,12 +1,13 @@
 
 pathlib
-pd
+pandas
 
 openai
 groq
 
 langchain
 
+langchain-community
 langgraph
 langchain-text-splitters
 
