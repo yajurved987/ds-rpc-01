@@ -1,0 +1,14 @@
+
+pathlib
+pd
+
+openai
+groq
+
+langchain
+
+langgraph
+langchain-text-splitters
+
+faiss-cpu
+

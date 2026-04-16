@@ -3,7 +3,15 @@ name = "ds-rpc-01"
 version = "0.1.0"
 description = "Starter project for the RPC-01: Internal Chatbot with Role Based Access Control"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
+    "faiss-cpu>=1.13.2",
     "fastapi[standard]>=0.115.12",
+    "groq>=1.1.2",
+    "langchain>=1.2.15",
+    "langchain-text-splitters>=1.1.2",
+    "langgraph>=1.1.6",
+    "openai>=2.32.0",
+    "pathlib>=1.0.1",
+    "pd>=0.0.4",
 ]
