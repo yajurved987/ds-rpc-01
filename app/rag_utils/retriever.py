@@ -13,9 +13,24 @@ def get_vectorstore():
 
 
 def build_filter(role: str):
+    """
+    Role-based filter. Users see:
+    - Their own role documents
+    - 'general' or 'shared' documents (accessible to all)
+    
+    c_level bypasses filter (sees everything)
+    """
     if role == "c_level":
-        return None
-    return {"role": role.lower()}
+        return None  # no filter — see everything
+
+    return {
+        "$or": [
+            {"role": role},
+            {"role": "general"},
+            {"role": "shared"},
+        ]
+    }
+
 
 
 def retrieve_docs(query: str, role: str, top_k: int = 5):

@@ -13,6 +13,8 @@ from app.settings import settings
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 DATA_DIR = BASE_DIR / "resources" / "data"
 
+
+
 #Function to load the data from the data folder
 
 def load_data(file_path, role):
@@ -55,7 +57,7 @@ def load_data(file_path, role):
 
 splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
 
-def spilt_documents(documents):
+def split_documents(documents):
     return splitter.split_documents(documents)
     
 def get_embeddings_model():
