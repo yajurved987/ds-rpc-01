@@ -13,7 +13,7 @@ class Settings:
     CHAT_MODEL_NAME: str = os.getenv("CHAT_MODEL_NAME","qwen/qwen3-32b")
     CHAT_MODEL_TEMPERATURE: float = float(os.getenv("CHAT_MODEL_TEMPERATURE",1.0))
     CHAT_MODEL_MAX_TOKENS: int = int(os.getenv("CHAT_MODEL_MAX_TOKENS",1000))
-    CHAT_MODEL_TOP_P: float = float(os.getenv("CHAT_MODEL_TOP_P",2.0))
+    CHAT_MODEL_TOP_P: float = float(os.getenv("CHAT_MODEL_TOP_P",1.0))
 
     VECTORSTORE_DIR: str = os.getenv("VECTORSTORE_DIR","vector_store/chromadb")
     #CHAT_MODEL_FREQUENCY_PENALTY: float = float(os.getenv("CHAT_MODEL_FREQUENCY_PENALTY"))

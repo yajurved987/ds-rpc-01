@@ -1,12 +1,17 @@
 from pathlib import Path
 import os
 import pandas as pd
+from uuid import uuid4
+
 from langchain_core.documents import Document
-from langchain_community.document_loaders import TextLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_openai import OpenAIEmbeddings
+
+from app.settings import settings
 
 
-
-DATA_DIR = Path("../../resources/data")
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+DATA_DIR = BASE_DIR / "resources" / "data"
 
 #Function to load the data from the data folder
 
@@ -48,4 +53,10 @@ def load_data(file_path, role):
     
     
 
-        
+splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
+
+def spilt_documents(documents):
+    return splitter.split_documents(documents)
+    
+def get_embeddings_model():
+    return OpenAIEmbeddings(model=settings.EMBEDDING_MODEL_NAME)

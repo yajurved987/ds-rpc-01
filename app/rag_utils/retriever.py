@@ -1,0 +1,32 @@
+from langchain_chroma import Chroma
+from langchain_openai import OpenAIEmbeddings
+from app.settings import settings
+
+
+def get_vectorstore():
+    embeddings = OpenAIEmbeddings(model=settings.EMBEDDING_MODEL_NAME)
+
+    return Chroma(
+        persist_directory=settings.VECTORSTORE_DIR,
+        embedding_function=embeddings
+    )
+
+
+def build_filter(role: str):
+    if role == "c_level":
+        return None
+    return {"role": role.lower()}
+
+
+def retrieve_docs(query: str, role: str, top_k: int = 5):
+    vectordb = get_vectorstore()
+    search_kwargs = {"k": top_k}
+
+    role_filter = build_filter(role)
+    if role_filter:
+        search_kwargs["filter"] = role_filter
+
+    retriever = vectordb.as_retriever(search_kwargs=search_kwargs)
+
+    docs = retriever.invoke(query)
+    return docs
